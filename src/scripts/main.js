@@ -6,7 +6,7 @@ const game = new Game();
 
 const boardEl = document.querySelector('.game-field');
 const scoreEl = document.querySelector('.game-score');
-const startBtn = document.querySelector('.button.start');
+const startBtn = document.querySelector('.button-start');
 const msgWin = document.querySelector('.message-win');
 const msgLose = document.querySelector('.message-lose');
 const msgStart = document.querySelector('.message-start');
