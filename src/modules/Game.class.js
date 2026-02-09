@@ -146,4 +146,4 @@ export default class Game {
   }
 }
 
-module.exports = Game;
+
