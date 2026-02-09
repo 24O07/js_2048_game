@@ -145,5 +145,3 @@ export default class Game {
     return false;
   }
 }
-
-

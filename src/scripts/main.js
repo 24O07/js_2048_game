@@ -40,6 +40,8 @@ function render() {
 startBtn.addEventListener('click', () => {
   game.restart();
   render();
+  startBtn.textContent = 'Restart';
+  startBtn.style.fontSize = '18px';
 });
 
 // клавіші
