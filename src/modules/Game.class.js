@@ -9,7 +9,18 @@ export default class Game {
   }
 
   createEmptyBoard() {
-    return Array.from({ length: this.size }, () => Array(this.size).fill(0));
+    const board = [];
+
+    for (let i = 0; i < this.size; i++) {
+      const row = [];
+
+      for (let j = 0; j < this.size; j++) {
+        row.push(0);
+      }
+      board.push(row);
+    }
+
+    return board;
   }
 
   getState() {

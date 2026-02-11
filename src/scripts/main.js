@@ -12,10 +12,10 @@ const msgLose = document.querySelector('.message-lose');
 const msgStart = document.querySelector('.message-start');
 
 function render() {
-  // оновлюємо рахунок
+  // рахунок
   scoreEl.textContent = game.getScore();
 
-  // оновлюємо плитки
+  // плитки
   const cells = boardEl.querySelectorAll('.field-cell');
   const flatBoard = game.getState().flat();
 
@@ -30,10 +30,24 @@ function render() {
     }
   });
 
-  // оновлюємо повідомлення
-  msgWin.classList.toggle('hidden', game.getStatus() !== 'win');
-  msgLose.classList.toggle('hidden', game.getStatus() !== 'lose');
-  msgStart.classList.toggle('hidden', game.getStatus() === 'playing');
+  // повідомлення
+  const gameStatus = game.getStatus();
+
+  msgWin.classList.add('hidden');
+  msgLose.classList.add('hidden');
+  msgStart.classList.add('hidden');
+
+  if (gameStatus === 'win') {
+    msgWin.classList.remove('hidden');
+  }
+
+  if (gameStatus === 'lose') {
+    msgLose.classList.remove('hidden');
+  }
+
+  if (gameStatus === 'idle') {
+    msgStart.classList.remove('hidden');
+  }
 }
 
 // кнопка Start / Restart
@@ -42,6 +56,8 @@ startBtn.addEventListener('click', () => {
   render();
   startBtn.textContent = 'Restart';
   startBtn.style.fontSize = '18px';
+  startBtn.style.backgroundColor = 'red';
+  startBtn.style.color = 'white';
 });
 
 // клавіші
