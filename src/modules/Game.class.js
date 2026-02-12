@@ -8,19 +8,15 @@ export default class Game {
     this.board = initialState || this.createEmptyBoard();
   }
 
+  // Створюємо порожню дошку
   createEmptyBoard() {
-    const board = [];
+    return Array.from({ length: this.size }, () => Array(this.size).fill(0));
+  }
 
-    for (let i = 0; i < this.size; i++) {
-      const row = [];
-
-      for (let j = 0; j < this.size; j++) {
-        row.push(0);
-      }
-      board.push(row);
-    }
-
-    return board;
+  // Фіксоване встановлення дошки (для тестів)
+  setBoard(newBoard) {
+    this.board = newBoard.map((row) => [...row]);
+    this.updateStatus();
   }
 
   getState() {
@@ -49,6 +45,7 @@ export default class Game {
     this.start();
   }
 
+  // Додаємо плитку 2 або 4 на випадкове порожнє місце
   addRandomTile() {
     const empty = [];
 
@@ -69,6 +66,7 @@ export default class Game {
     this.board[row][col] = Math.random() < 0.9 ? 2 : 4;
   }
 
+  // Рухи
   moveLeft() {
     let moved = false;
 
@@ -128,6 +126,7 @@ export default class Game {
     this.board = this.board[0].map((_, c) => this.board.map((r) => r[c]));
   }
 
+  // Перевірка статусу гри
   updateStatus() {
     if (this.board.flat().includes(2048)) {
       this.status = 'win';
@@ -140,6 +139,7 @@ export default class Game {
     this.status = movesLeft ? 'playing' : 'lose';
   }
 
+  // Перевірка можливості об'єднати плитки
   canMerge() {
     for (let r = 0; r < this.size; r++) {
       for (let c = 0; c < this.size - 1; c++) {

@@ -6,7 +6,10 @@ const game = new Game();
 
 const boardEl = document.querySelector('.game-field');
 const scoreEl = document.querySelector('.game-score');
-const startBtn = document.querySelector('.button-start');
+
+// ✅ ВИПРАВЛЕНО ТУТ
+const startBtn = document.querySelector('.button.start');
+
 const msgWin = document.querySelector('.message-win');
 const msgLose = document.querySelector('.message-lose');
 const msgStart = document.querySelector('.message-start');
@@ -54,10 +57,12 @@ function render() {
 startBtn.addEventListener('click', () => {
   game.restart();
   render();
+
   startBtn.textContent = 'Restart';
   startBtn.style.fontSize = '18px';
   startBtn.style.backgroundColor = 'red';
   startBtn.style.color = 'white';
+  startBtn.classList.add('restart');
 });
 
 // клавіші
